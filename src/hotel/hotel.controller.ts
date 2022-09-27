@@ -10,16 +10,16 @@ import { HotelsService } from './hotel.service';
 @Controller('hotels')
 @ApiTags('Hotels')
 export class HotelsController {
-  constructor(private hotelService: HotelsService) {}
+  constructor(private hotelsService: HotelsService) {}
 
   @Get()
   findAll(@Req() request: Request): Promise<Hotel[]> {
-    return this.hotelService.findAll();
+    return this.hotelsService.findAll();
   }
 
   @Get(':id')
   findOne(@Param('id') id: number): Promise<Hotel> {
-    return this.hotelService.findOne(id);
+    return this.hotelsService.findOne(id);
   }
 
   @Patch(':id')
@@ -27,6 +27,6 @@ export class HotelsController {
     @Param('id') id: number,
     @Body() updateDto: HotelUpdateDto,
   ): Promise<UpdateResult> {
-    return this.hotelService.update(id, updateDto);
+    return this.hotelsService.update(id, updateDto);
   }
 }
