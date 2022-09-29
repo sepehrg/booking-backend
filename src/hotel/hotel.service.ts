@@ -12,7 +12,9 @@ export class HotelsService {
   ) {}
 
   async findAll(): Promise<Hotel[]> {
-    return await this.hotelsRepository.find();
+    return await this.hotelsRepository.find({
+      relations: ['rooms'],
+    });
   }
 
   async findOne(id: number): Promise<Hotel> {
@@ -21,6 +23,11 @@ export class HotelsService {
         id,
       },
       relations: ['rooms'],
+      order: {
+        rooms: {
+          id: 'ASC',
+        },
+      },
     });
   }
 

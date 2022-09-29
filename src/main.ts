@@ -1,3 +1,4 @@
+import cors = require('cors');
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
@@ -10,6 +11,7 @@ const port = 3003;
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
+  app.use(cors({ origin: '*' }));
   app.useStaticAssets(join(__dirname, '..', '../uploads/images'), {
     prefix: '/uploads',
     index: false,
